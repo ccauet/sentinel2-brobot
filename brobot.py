@@ -63,7 +63,8 @@ def loop(api, media_api):
         api.statuses.update(status=status,
                             media_ids=','.join([img_id_sorted, img_id_orig]),
                             lat=last_posted['geo']['coordinates'][0],
-                            long=last_posted['geo']['coordinates'][1])
+                            long=last_posted['geo']['coordinates'][1],
+                            in_reply_to_status_id=_id)
 
 
 if __name__ == '__main__':
