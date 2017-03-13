@@ -1,6 +1,7 @@
 import os
 import re
 import time
+import logging
 import twitter
 import tempfile
 
@@ -18,6 +19,7 @@ def twitter_credentials():
 
 
 def loop(api, media_api):
+    logger = logging.getLogger('bro-bot')
     last_id = 0
     while True:
         last_posted = api.statuses.user_timeline(screen_name='Sentinel2Bot')[0]
@@ -65,6 +67,8 @@ def loop(api, media_api):
                             lat=last_posted['geo']['coordinates'][0],
                             long=last_posted['geo']['coordinates'][1],
                             in_reply_to_status_id=_id)
+
+        logger.info('Posted new picture')
 
 
 if __name__ == '__main__':
